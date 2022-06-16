@@ -12,11 +12,12 @@ IF NOT EXIST BuildTools (
 cd BuildTools
 curl -z BuildTools.jar -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
 set /p Input=Enter the version: || set Input=latest
-java -jar BuildTools.jar --generate-source --rev %Input%
+java -jar BuildTools.jar --remapped --generate-source --rev %Input%
 
 cd ..
 
 copy /B .\BuildTools\Spigot\Spigot-Server\target\spigot-*-remapped.jar .\lib\spigot-remapped.jar
+copy /B .\BuildTools\Spigot\Spigot-Server\target\spigot-*-remapped-mojang.jar .\lib\spigot-remapped.jar
 copy /B .\BuildTools\Spigot\Spigot-API\target\spigot-api-*-shaded.jar .\lib\spigot-api.jar
 copy /B .\BuildTools\Spigot\Spigot-API\target\spigot-api-*-sources.jar .\lib\spigot-api-src.jar
 
